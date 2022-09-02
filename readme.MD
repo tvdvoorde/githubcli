@@ -1,3 +1,3 @@
 # Readme
 
-Sample repo to test Github & Azure workload identity federation combined with Terraform
+Sample repo to test Github & Azure workload identity federation combined with Terraform and Inspec
