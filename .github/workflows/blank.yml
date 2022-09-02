@@ -1,0 +1,52 @@
+
+name: 'inspec after terraform example'
+
+on: workflow_dispatch
+
+env:
+  ARM_CLIENT_ID: 7918c908-b555-4a93-9539-dc71efb23049
+  ARM_SUBSCRIPTION_ID: ea757669-674b-44c1-bf87-bd0fd0880294
+  ARM_TENANT_ID: e2a4b012-36ad-45f2-8c5c-169f06c2f970
+  ARM_ACCESS_KEY: ${{ secrets.KEY }}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs: 
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: 'checkout'
+      - name: 'azure cli login'
+        uses: azure/login@v1
+        with:
+          client-id: ${{ env.ARM_CLIENT_ID }}
+          tenant-id: ${{ env.ARM_TENANT_ID }}
+          subscription-id: ${{ env.ARM_SUBSCRIPTION_ID }}
+      - name: 'terraform init'
+        run: |
+          terraform init
+      - name: 'terraform apply'
+        run: |
+          terraform apply -auto-approve
+      - name: 'download inspec'
+        run: |
+          wget -q https://packages.chef.io/files/stable/inspec/5.18.14/ubuntu/20.04/inspec_5.18.14-1_amd64.deb
+          echo b4e8b11478cd2c930b24edcf5c24ef49fe83452f08f6cedc13deae5ce7b0c757 inspec_5.18.14-1_amd64.deb|sha256sum -c
+      - name: 'install inspec'
+        run: |
+          sudo dpkg -i inspec_5.18.14-1_amd64.deb
+      - name: 'perform test'
+        run: |
+          export KEYVAULTURL=$(terraform output -raw vault_uri)
+          inspec exec --chef-license=accept-silent --input=URL=${KEYVAULTURL}  --reporter cli html:test.html -- inspec/profiles/access
+      - uses: actions/upload-artifact@v3
+        name: 'upload test results'
+        if: always()
+        with:
+          name: test-result-${{ github.run_number }}
+          path: test.html
+
+
