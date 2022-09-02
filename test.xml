@@ -1,9 +1,0 @@
-<?xml version='1.0'?>
-<testsuites>
-  <testsuite name='access' tests='4' failed='0' failures='0'>
-    <testcase name='HTTP GET on https://keyvault44c1cadf.vault.azure.net status is expected to cmp == 403' classname='access.Anonymous' target='local://' time='0.1097383'/>
-    <testcase name='Host keyvault44c1cadf.vault.azure.net port 443 proto tcp is expected to be reachable' classname='access.Anonymous' target='local://' time='1.0548666'/>
-    <testcase name='Host keyvault44c1cadf.vault.azure.net port 443 proto tcp is expected to be resolvable' classname='access.Anonymous' target='local://' time='0.0621366'/>
-    <testcase name='Command: `dig keyvault44c1cadf.vault.azure.net` stdout is expected to match &quot;IN A 20.61&quot;' classname='access.Anonymous' target='local://' time='0.0482765'/>
-  </testsuite>
-</testsuites>
