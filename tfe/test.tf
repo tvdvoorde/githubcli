@@ -51,4 +51,8 @@ resource "random_id" "server" {
 
 # https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers#using-custom-actions
 
+# curl -H "Authorization: bearer $TOKEN" $URL -H "Accept: application/json; api-version=2.0" -H "Content-Type: application/json" -d "{}"
+# {"$id":"1","innerException":null,"message":"Can't issue ID_TOKEN for job in 'Completed' state.","typeName":"GitHub.Actions.Runtime.WebApi.CannotGenerateIdTokenException, GitHub.Actions.Runtime.WebApi, Version=14.0.0.0, Culture=neutral, PublicKeyToken=null","typeKey":"CannotGenerateIdTokenException","errorCode":0,"eventId":3000}ted@WINAPdbGmVxaj1b:/mnt/c/temp/tfe$
+
+
 
