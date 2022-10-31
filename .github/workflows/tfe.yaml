@@ -29,7 +29,7 @@ jobs:
           tenant-id: ${{ env.ARM_TENANT_ID }}
           subscription-id: ${{ env.ARM_SUBSCRIPTION_ID }}
 
-      - name: 'test'
+      - name: 'test1'
         working-directory: tfe
         run: |
           echo "1"
@@ -41,15 +41,15 @@ jobs:
         run: |
           terraform init
           
-      - name: 'test'
+      - name: 'test2'
         working-directory: tfe      
         run: |
           terraform init
           
-      - name: 'test'
+      - name: 'test3'
         working-directory: tfe      
         run: |
-          terraform apply -var="oidc_request_token=${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}" -var="oidc_request_url=${{ env.ACTIONS_ID_TOKEN_REQUEST_URL }}"
+          terraform apply -var="oidc_request_token=$ACTIONS_ID_TOKEN_REQUEST_TOKEN" -var="oidc_request_url=$ACTIONS_ID_TOKEN_REQUEST_URL"
 
             
           
