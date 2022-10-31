@@ -1,8 +1,5 @@
-# variable "oidc_token" {}
 variable "oidc_request_token" {}
 variable "oidc_request_url" {}
-
-
 
 provider "azurerm" {
   features {
@@ -18,7 +15,6 @@ provider "azurerm" {
   oidc_request_url   = var.oidc_request_url
   
 }
-
 
 resource "azurerm_resource_group" "hub" {
   name     = "rg-123"
@@ -42,17 +38,3 @@ terraform {
 resource "random_id" "server" {
   byte_length = 8
 }
-
-
-
-# token=$(az account get-access-token| jq -r ".accessToken")
-
-# terraform apply -var="oidc_token=$token"
-
-# https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers#using-custom-actions
-
-# curl -H "Authorization: bearer $TOKEN" $URL -H "Accept: application/json; api-version=2.0" -H "Content-Type: application/json" -d "{}"
-# {"$id":"1","innerException":null,"message":"Can't issue ID_TOKEN for job in 'Completed' state.","typeName":"GitHub.Actions.Runtime.WebApi.CannotGenerateIdTokenException, GitHub.Actions.Runtime.WebApi, Version=14.0.0.0, Culture=neutral, PublicKeyToken=null","typeKey":"CannotGenerateIdTokenException","errorCode":0,"eventId":3000}ted@WINAPdbGmVxaj1b:/mnt/c/temp/tfe$
-
-
-
