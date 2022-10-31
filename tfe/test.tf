@@ -1,4 +1,4 @@
-variable "oidc_token" {}
+# variable "oidc_token" {}
 variable "oidc_request_token" {}
 variable "oidc_request_url" {}
 
