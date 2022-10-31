@@ -1,0 +1,33 @@
+name: 'test'
+
+on: workflow_dispatch
+
+env:
+  TF_TOKEN_app_terraform_io: ${{ secrets.TFE }}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs: 
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: 'checkout'
+      - name: 'test'
+        working-directory: tfe      
+        run: |
+          echo "---"
+          echo $ACTIONS_ID_TOKEN_REQUEST_TOKEN|base64 -d -w0|base64 -d -w0
+          echo "---"          
+          echo $ACTIONS_ID_TOKEN_REQUEST_URL|base64 -d -w0|base64 -d -w0
+          echo "---"
+          curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" $ACTIONS_ID_TOKEN_REQUEST_URL -H "Accept: application/json; api-version=2.0" -H "Content-Type: application/json" -d "{}"
+          sleep 300
+          
+          
+
+   
+          
+          
