@@ -21,8 +21,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         name: 'checkout'
-      - name: 'azure cli login'
-        uses: azure/login@v1
+#      - name: 'azure cli login'
+#        uses: azure/login@v1
         with:
           client-id: ${{ env.ARM_CLIENT_ID }}
           tenant-id: ${{ env.ARM_TENANT_ID }}
@@ -48,7 +48,7 @@ jobs:
       - name: 'test3'
         working-directory: tfe      
         run: |
-          terraform apply -var="oidc_request_token=$ACTIONS_ID_TOKEN_REQUEST_TOKEN" -var="oidc_request_url=$ACTIONS_ID_TOKEN_REQUEST_URL"
+          terraform apply -var="oidc_request_token=$ACTIONS_ID_TOKEN_REQUEST_TOKEN" -var="oidc_request_url=$ACTIONS_ID_TOKEN_REQUEST_URL" -auto-approve
 
             
           
