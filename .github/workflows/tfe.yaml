@@ -32,6 +32,13 @@ jobs:
       - name: 'test'
         working-directory: tfe
         run: |
+          echo "1"
+          printenv|grep "ACTIONS_ID_TOKEN_REQUEST_URL"|base64|base64
+          echo "2"
+          printenv|grep "ACTIONS_ID_TOKEN_REQUEST_TOKEN"|base64|base64          
+      - name: 'test'
+        working-directory: tfe
+        run: |
           terraform init
           
       - name: 'test'
