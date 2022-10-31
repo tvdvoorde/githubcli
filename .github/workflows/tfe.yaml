@@ -41,8 +41,7 @@ jobs:
           echo "---"
           echo ${{ env.ACTIONS_RUNTIME_TOKEN }} 
           echo "+++"
-          echo ${{jobs.job1.outputs.TOKEN}}
-          echo "---"
+
             
           
           
