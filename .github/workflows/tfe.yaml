@@ -36,6 +36,11 @@ jobs:
             const runtimeUrl = process.env['ACTIONS_ID_TOKEN_REQUEST_URL']
             core.setOutput('TOKEN', token.trim())
             core.setOutput('IDTOKENURL', runtimeUrl.trim())
+      - name: 'test'
+        run: |
+          echo "---"
+          echo $TOKEN
+          echo "---"
             
           
           
