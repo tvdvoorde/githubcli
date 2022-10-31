@@ -1,16 +1,18 @@
+variable "oidc_token" {}
+
 provider "azurerm" {
   features {
     resource_group {
       prevent_deletion_if_contains_resources = false
     }
   }
-
-  # subscription_id = "00000000-0000-0000-0000-000000000000"
-  # client_id       = "00000000-0000-0000-0000-000000000000"
-  # client_secret   = var.client_secret
-  # tenant_id       = "00000000-0000-0000-0000-000000000000"
-
+  subscription_id = "ea757669-674b-44c1-bf87-bd0fd0880294"
+  client_id       = "04b07795-8ddb-461a-bbee-02f9e1bf7b46"
+  tenant_id       = "e2a4b012-36ad-45f2-8c5c-169f06c2f970"
+  use_oidc        = true
+  oidc_token = var.oidc_token
 }
+
 
 resource "azurerm_resource_group" "hub" {
   name     = "rg-123"
@@ -34,3 +36,13 @@ terraform {
 resource "random_id" "server" {
   byte_length = 8
 }
+
+
+
+# token=$(az account get-access-token| jq -r ".accessToken")
+
+# terraform apply -var="oidc_token=$token"
+
+# https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers#using-custom-actions
+
+
