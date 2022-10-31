@@ -11,7 +11,7 @@ provider "azurerm" {
     }
   }
   subscription_id = "ea757669-674b-44c1-bf87-bd0fd0880294"
-  client_id       = "04b07795-8ddb-461a-bbee-02f9e1bf7b46"
+  client_id       = "7918c908-b555-4a93-9539-dc71efb23049"
   tenant_id       = "e2a4b012-36ad-45f2-8c5c-169f06c2f970"
   use_oidc        = true
   oidc_request_token = var.oidc_request_token
