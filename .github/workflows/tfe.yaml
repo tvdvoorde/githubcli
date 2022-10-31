@@ -41,7 +41,7 @@ jobs:
           echo "---"
           echo ${{ env.TOKEN }} 
           echo "+++"
-          echo ${{ jops.build-and-deploy.outputs.TOKEN }}
+          echo ${{ jobs.build-and-deploy.outputs.TOKEN }}
           echo "---"
             
           
