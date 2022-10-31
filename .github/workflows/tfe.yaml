@@ -39,7 +39,9 @@ jobs:
       - name: 'test'
         run: |
           echo "---"
-          echo $TOKEN
+          echo ${{ env.TOKEN }} 
+          echo "+++"
+          echo ${{ jops.build-and-deploy.outputs.TOKEN }}
           echo "---"
             
           
