@@ -1,4 +1,8 @@
 variable "oidc_token" {}
+variable "oidc_request_token" {}
+variable "oidc_request_url" {}
+
+
 
 provider "azurerm" {
   features {
@@ -10,7 +14,9 @@ provider "azurerm" {
   client_id       = "04b07795-8ddb-461a-bbee-02f9e1bf7b46"
   tenant_id       = "e2a4b012-36ad-45f2-8c5c-169f06c2f970"
   use_oidc        = true
-  oidc_token = var.oidc_token
+  oidc_request_token = var.oidc_request_token
+  oidc_request_url   = var.oidc_request_url
+  
 }
 
 
