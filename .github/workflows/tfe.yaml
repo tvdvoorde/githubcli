@@ -48,7 +48,7 @@ jobs:
       - name: 'test3'
         working-directory: tfe      
         run: |
-          terraform apply -var="oidc_request_token=$ACTIONS_ID_TOKEN_REQUEST_TOKEN" -var="oidc_request_url=$ACTIONS_ID_TOKEN_REQUEST_URL" -auto-approve
+          terraform plan -var="oidc_request_token=$ACTIONS_ID_TOKEN_REQUEST_TOKEN" -var="oidc_request_url=$ACTIONS_ID_TOKEN_REQUEST_URL" -auto-approve
 
             
           
