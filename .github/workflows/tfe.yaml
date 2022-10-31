@@ -9,6 +9,8 @@ env:
   ARM_TENANT_ID: e2a4b012-36ad-45f2-8c5c-169f06c2f970
   ARM_USE_OIDC: true
   #ARM_ACCESS_KEY: ${{ secrets.KEY }}
+  TF_TOKEN_app_terraform_io: ${{ secrets.TFE }}
+
 
 permissions:
   id-token: write
@@ -27,9 +29,18 @@ jobs:
           tenant-id: ${{ env.ARM_TENANT_ID }}
           subscription-id: ${{ env.ARM_SUBSCRIPTION_ID }}
 
-      
+      - name: 'test'
+        working-directory: tfe
+        run: |
+          terraform init
           
       - name: 'test'
+        working-directory: tfe      
+        run: |
+          terraform init
+          
+      - name: 'test'
+        working-directory: tfe      
         run: |
           terraform apply -var="oidc_request_token=${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}" -var="oidc_request_url=${{ env.ACTIONS_ID_TOKEN_REQUEST_URL }}"
 
