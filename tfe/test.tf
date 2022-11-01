@@ -13,7 +13,6 @@ provider "azurerm" {
   use_oidc        = true
   oidc_request_token = var.oidc_request_token
   oidc_request_url   = var.oidc_request_url
-  
 }
 
 resource "azurerm_resource_group" "hub" {
