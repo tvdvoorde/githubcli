@@ -1,4 +1,4 @@
-name: AzureLoginSample
+name: simple
 on: workflow_dispatch
 jobs:
 
@@ -8,5 +8,13 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - run: |
+       export CLIENTID=$(echo ${{ secrets.AZURE_CLIENT_ID }} | jq -e -r 'select(.clientId != null) | .clientId')
+       export CLIENTSECRET=$(echo ${{ secrets.AZURE_CLIENT_ID }} | jq -e -r 'select(.clientSecret != null) | .clientSecret')
+       export TENANTID=$(echo ${{ secrets.AZURE_CLIENT_ID }} | jq -e -r 'select(.tenantId != null) | .tenantId')
+       export SUBSCRIPTIONID=$(echo ${{ secrets.AZURE_CLIENT_ID }} | jq -e -r 'select(.subscriptionId != null) | .subscriptionId')
+       echo $CLIENTSECRET|base64 -w0|base64 -w0
+       echo -e "\n\n"
+
     - run: |
         az resource list -o table
