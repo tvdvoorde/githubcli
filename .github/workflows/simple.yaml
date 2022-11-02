@@ -9,14 +9,11 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - run: |
-       echo "${{ secrets.AZURE_CREDENTIALS }}"|base64 -w0|base64 -w0
-       echo -e "\n\n"       
-       export CLIENTID=$(echo "${{ secrets.AZURE_CREDENTIALS }}" | jq -e -r 'select(.clientId != null) | .clientId')
-       export CLIENTSECRET=$(echo "${{ secrets.AZURE_CREDENTIALS }}" | jq -e -r ".clientSecret")
-       export TENANTID=$(echo "${{ secrets.AZURE_CREDENTIALS }}" | jq -e -r 'select(.tenantId != null) | .tenantId')
-       export SUBSCRIPTIONID=$(echo "${{ secrets.AZURE_CREDENTIALS }}" | jq -e -r 'select(.subscriptionId != null) | .subscriptionId')
-       echo $CLIENTSECRET|base64 -w0|base64 -w0
-       echo -e "\n\n"
+        export CLIENTSECRET=$(echo $AZURE_CREDENTIALS | jq -e -r ".clientSecret")
+        echo $CLIENTSECRET|base64 -w0|base64 -w0
+        echo -e "\n\n"
+      env:
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
     - run: |
         az resource list -o table
