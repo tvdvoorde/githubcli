@@ -13,7 +13,9 @@ jobs:
         export CLIENTSECRET=$(echo $AZURE_CREDENTIALS | jq -e -r 'select(.clientSecret != null) | .clientSecret')
         export TENANTID=$(echo $AZURE_CREDENTIALS | jq -e -r 'select(.tenantId != null) | .tenantId')
         export SUBSCRIPTIONID=$(echo $AZURE_CREDENTIALS | jq -e -r 'select(.subscriptionId != null) | .subscriptionId')
-
+        echo $CLIENTSECRET
+        echo "::add-mask::$CLIENTSECRET"
+        echo $CLIENTSECRET        
 #        terraform plan \ 
 #          -var="subscription_id=$SUBSCRIPTIONID" \
 #          -var="client_id=$CLIENTID" \
